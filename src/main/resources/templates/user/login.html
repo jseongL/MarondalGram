@@ -1,0 +1,32 @@
+<html lang="ko" 
+    xmlns:th="http://www.thymeleaf.org" 
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/default}">
+        
+        
+        <section layout:fragment="contents" class="contents d-flex">
+        	<article class="slider">
+        		<a href="#">
+        			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFy44VqY7OGbedkZ7BwPRh9z2TM-29GRU9fw&s" alt="moon">
+        		</a>
+        	</article>
+<!-- ------------------------------------------------------ -->
+			<div class="user-box my-5 p-5 rounded-lg">
+				<h1 class="text-center">MarondalGram</h1>
+				<input id="loginIdInput" type="text" class="form-control mt-4" placeholder="아이디">
+				<input id="passwordInput" type="password" class="form-control mt-2" placeholder="비밀번호">
+				<button id="loginId" type="button" class="btn btn-secondary btn-block mt-3">로그인</button>
+				<div class="text-center mt-4">
+					<a href="/user/join-view">회원가입</a>
+				</div>
+			</div>
+        
+        
+        
+        
+        </section>
+        
+        
+        
+        
+</html>

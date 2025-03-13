@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+#wrap{
+	width:1200px;
+	height:800px;
+	margin: 0 auto;
+	background-color:#FFDADA;
+}
+
+.header{
+	height:100px;
+	background-color: #E96B6B;
+}
+
+
+
+.contents{
+	
+}
+
+.slider img{
+	margin-top:150px;
+	margin-left:100px;
+	width:400px;
+	height:400px;
+}
+
+
+.contents .user-box{
+	margin-left:100px;
+	width:600px;
+}
+
+
+
+
+
+
