@@ -1,16 +1,15 @@
-package com.jsL.MarondalGram;
+package com.jsL.MarondalGram.post;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/user")
 @Controller
-public class UserController {
+@RequestMapping("/post")
+public class PostController {
 	
-	@GetMapping("/login-view")
-	public String login() {
-		return "user/login";
+	@GetMapping("/list-view")
+	public String list() {
+		return "post/list";
 	}
-
 }

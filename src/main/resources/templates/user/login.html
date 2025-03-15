@@ -7,7 +7,7 @@
         <section layout:fragment="contents" class="contents d-flex">
         	<article class="slider">
         		<a href="#">
-        			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFy44VqY7OGbedkZ7BwPRh9z2TM-29GRU9fw&s" alt="moon">
+        			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-88LOqqL5lB_FSafh3NTq80Sft5SV1gV84A&s" alt="moon">
         		</a>
         	</article>
 <!-- ------------------------------------------------------ -->
@@ -15,18 +15,61 @@
 				<h1 class="text-center">MarondalGram</h1>
 				<input id="loginIdInput" type="text" class="form-control mt-4" placeholder="아이디">
 				<input id="passwordInput" type="password" class="form-control mt-2" placeholder="비밀번호">
-				<button id="loginId" type="button" class="btn btn-secondary btn-block mt-3">로그인</button>
+				<button id="loginBtn" type="button" class="btn btn-danger btn-block mt-3">로그인</button>
 				<div class="text-center mt-4">
+					<span class="mr-2">계정이 없으신가요?</span>
 					<a href="/user/join-view">회원가입</a>
 				</div>
 			</div>
-        
-        
-        
-        
         </section>
         
         
+        
+        <script layout:fragment="script">
+			$(function(){
+				$("#loginBtn").on("click", function(){
+					let loginId = $("#loginIdInput").val();
+					let password = $("#passwordInput").val();
+					
+					if(loginId == ""){
+						alert("아이디를 입력하세요");
+						return ;
+					}
+					if(password == ""){
+						alert("비밀번호를 입력하세요");
+						return ;
+					}
+					
+					console.log("아이디 : " + loginId + "비밀번호 : " + password);
+					
+					$.ajax({
+						type:`post`
+						,url:"/user/login"
+						,data:{"loginId":loginId, "password":password}
+						,success(response){
+							if(response.result == "success"){
+								location.href = "/post/list-view";
+								
+							}
+							else{
+								alert("로그인 실패");
+							}
+						}
+						,error:function(){
+							alert("로그인 에러");
+						}
+						
+					})
+					
+					
+					
+				});
+				
+			})
+			
+			
+			
+		</script>
         
         
 </html>
