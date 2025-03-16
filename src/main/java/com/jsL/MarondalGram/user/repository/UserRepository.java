@@ -19,5 +19,5 @@ public interface UserRepository {
 			,@Param("password")String password
 			);
 	
-
+	public int deleteUser(@Param("id")String id);
 }

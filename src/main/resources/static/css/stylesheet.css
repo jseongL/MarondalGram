@@ -1,4 +1,15 @@
 @charset "UTF-8";
+.navi,
+.navi ul,
+.navi li,
+.navi a {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-decoration: none !important;
+  box-sizing: border-box !important;
+}
+
 body{
 	background-color:#FFDADA;
 }
@@ -52,6 +63,81 @@ body{
 }
 
 
+.navi {
+    margin-top: 15px;
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+/* 메인 메뉴 스타일 */
+.navi > li {
+    width: 180px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: darksalmon;
+    margin-right: 20px;
+    position: relative; /* 서브메뉴 위치 기준점 */
+}
+
+/* 메인 메뉴 글자 스타일 */
+.navi > li > a {
+    color: white !important;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none; /* 밑줄 제거 */
+    display: block; /* 영역 확보 */
+}
+
+/* 호버 시 메인 메뉴 스타일 변경 */
+.navi > li:hover {
+    background-color: #FFDADA;
+}
+
+.navi > li:hover > a {
+    color: black !important;
+}
+
+/* 서브메뉴 스타일 */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%; /* 메뉴 아래에 위치 */
+    left: 50%; /* 부모 기준으로 왼쪽 절반 위치 */
+    transform: translateX(-50%); /* 정확히 중앙으로 이동 */
+    width: 180px; /* 부모 메뉴와 동일한 너비 */
+    background-color: brown;
+    z-index: 10;
+    box-sizing: border-box;
+    border-top: 1px solid #555;
+    text-align: center;
+}
+
+/* 서브메뉴 항목 스타일 */
+.submenu li {
+    width: 100%;
+    line-height: 40px;
+}
+
+/* 서브메뉴 글자 스타일 */
+.submenu li a {
+    color: white !important;
+    text-decoration: none;
+    display: block;
+}
+
+/* 서브메뉴 호버 시 스타일 변경 */
+.submenu li:hover {
+    background-color: yellow;
+}
+.submenu>li:hover>a{
+	font-weight:bold;
+	color:black !important;
+}
+
+
+
 
 .listSlider{
 	height:400px;
@@ -87,13 +173,7 @@ body{
 	margin-top:70px;
 	margin-left:10px;
 }
-.logoutBtn{
-	width:90px;
-	height:40px;
-	margin-right:10px;
-	margin-top:10px;
-	font-weight:bold
-}
+
 
 
 
@@ -106,6 +186,34 @@ body{
 	font-size:10px;
 	font-weight:bold;
 }
+
+.writeTop{
+	margin-top:10px;
+}
+.writeTop img{
+	margin-left:10px;
+	width:20px;
+	height:20px;
+}
+.writeTop span{
+	margin-left:10px;
+}
+.addImg{
+	background-color:#cccccc;
+	margin-left:10px;
+	margin-top:10px;
+	width:400px;
+	height:300px;
+}
+.writeText{
+	margin-left:50px;
+	margin-top:10px;
+	width:300px;
+	height:300px;
+}
+
+
+
 
 
 .footer{

@@ -3,10 +3,12 @@ package com.jsL.MarondalGram.user;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.jsL.MarondalGram.user.domain.User;
 import com.jsL.MarondalGram.user.service.UserService;
@@ -67,6 +69,24 @@ public class UserRestController {
 			resultMap.put("result", "fail");
 		}
 		return resultMap;
+	}
+	
+	
+	
+	@GetMapping("/deleteUser")
+	public RedirectView withdraw(
+			HttpSession session
+			) {
+		
+		String userId = (String) session.getAttribute("userId");
+		
+		boolean result = userService.withdrawUser(userId);
+		
+		
+		if(result) {
+			return new RedirectView("/user/login-view");
+		}
+		return new RedirectView("/user/fail");
 	}
 	
 	

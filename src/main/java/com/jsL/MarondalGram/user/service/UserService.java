@@ -6,6 +6,8 @@ import com.jsL.MarondalGram.user.common.MD5HashingEncoder;
 import com.jsL.MarondalGram.user.domain.User;
 import com.jsL.MarondalGram.user.repository.UserRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public class UserService {
 
@@ -35,6 +37,18 @@ public class UserService {
 		User user = userRepository.selectUser(loginId, encyptPassword);
 		return user;
 	}
+	
+	
+	public boolean withdrawUser(String userId) {
+
+		int count = userRepository.deleteUser(userId);
+		if(count > 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	
 	
 	
 	
