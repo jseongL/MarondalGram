@@ -49,6 +49,19 @@ public class UserService {
 	}
 	
 	
+	public boolean isDuplicateId(String loginId) {
+		
+		int count = userRepository.selectCountByLoginId(loginId);
+		
+		if(count == 0) {//중복 안됌
+			return false;
+		}
+		return true;//중복됌
+	}
+	
+	
+	
+	
 	
 	
 	

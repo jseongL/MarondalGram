@@ -13,13 +13,15 @@
 <!-- ------------------------------------------------------ -->
 			<div class="user-box my-5 p-5 rounded-lg">
 				<h1 class="text-center">MarondalGram</h1>
-				<input id="loginIdInput" type="text" class="form-control mt-4" placeholder="아이디">
-				<input id="passwordInput" type="password" class="form-control mt-2" placeholder="비밀번호">
-				<button id="loginBtn" type="button" class="btn btn-danger btn-block mt-3">로그인</button>
-				<div class="text-center mt-4">
-					<span class="mr-2">계정이 없으신가요?</span>
-					<a href="/user/join-view">회원가입</a>
-				</div>
+				<form id="loginForm"> <!--  페이지 새로고침 없이 요청이 들어가야됌 -->
+					<input id="loginIdInput" type="text" class="form-control mt-4" placeholder="아이디">
+					<input id="passwordInput" type="password" class="form-control mt-2" placeholder="비밀번호">
+					<button id="loginBtn" type="submit" class="btn btn-danger btn-block mt-3">로그인</button>
+					<div class="text-center mt-4">
+						<span class="mr-2">계정이 없으신가요?</span>
+						<a href="/user/join-view">회원가입</a>
+					</div>
+				</form>
 			</div>
         </section>
         
@@ -27,7 +29,12 @@
         
         <script layout:fragment="script">
 			$(function(){
-				$("#loginBtn").on("click", function(){
+				
+				$("#loginForm").on("submit", function(e){
+				
+					//form테그의 원래 기능 제거하고 엔터기능만
+					e.preventDefault();
+					
 					let loginId = $("#loginIdInput").val();
 					let password = $("#passwordInput").val();
 					
@@ -48,11 +55,10 @@
 						,data:{"loginId":loginId, "password":password}
 						,success(response){
 							if(response.result == "success"){
-								location.href = "/post/list-view";
-								
+								location.href = "/post/list-view";	
 							}
 							else{
-								alert("로그인 실패");
+								alert("아이디 비밀번호를 확인하세요.");
 							}
 						}
 						,error:function(){

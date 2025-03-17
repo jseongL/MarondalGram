@@ -13,7 +13,6 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.jsL.MarondalGram.user.domain.User;
 import com.jsL.MarondalGram.user.service.UserService;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
@@ -52,7 +51,7 @@ public class UserRestController {
 	public Map<String, String>login(
 			@RequestParam("loginId")String loginId
 			,@RequestParam("password")String password
-			,HttpServletRequest request
+			,HttpSession session
 			){
 		
 		User user = userService.getUser(loginId, password);
@@ -60,7 +59,7 @@ public class UserRestController {
 		Map<String, String>resultMap = new HashMap<>();
 		
 		if(user != null) {
-			HttpSession session = request.getSession();
+			//세션에 사용자 정보 저장
 			session.setAttribute("userId", user.getId());
 			session.setAttribute("userLoginId", user.getLoginId());
 			resultMap.put("result", "success");
@@ -88,6 +87,32 @@ public class UserRestController {
 		}
 		return new RedirectView("/user/fail");
 	}
+	
+	
+	@GetMapping("/duplicate-id")
+	public Map<String, Boolean> isDuplicate(
+			@RequestParam String loginId
+			){
+		
+		Map<String, Boolean> resultMap = new HashMap<>();
+		
+		if(userService.isDuplicateId(loginId)) {
+			//중복
+			resultMap.put("result", true);
+		}
+		else {//중복 아님
+			resultMap.put("result", false);
+		}
+		
+		return resultMap;
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	

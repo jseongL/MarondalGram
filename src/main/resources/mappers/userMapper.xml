@@ -44,6 +44,20 @@
  	</delete>
  	
  	
+ 	<select id="selectCountByLoginId" parameterType="String" resultType="int">
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`user`
+ 		WHERE
+ 			`loginId` = #{loginId}			
+ 	</select>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
  	
  	
  </mapper>

@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
 
 	@GetMapping("/login-view")
@@ -24,12 +24,12 @@ public class UserController {
 
 	
 	@GetMapping("/logout")
-	public String logout(HttpServletRequest request){
-		HttpSession session =  request.getSession();
-		
+	public String logout(HttpSession session){
+		//로그인하고 세션에 저장된 id와 userId 제거
 		session.removeAttribute("userId");
 		session.removeAttribute("userLoginId");
 		return "redirect:/user/login-view";
+		 		//ResponseBody없이 사용가능
 	}
 	
 	

@@ -20,4 +20,12 @@ public interface UserRepository {
 			);
 	
 	public int deleteUser(@Param("id")String id);
+	
+	
+	public int selectCountByLoginId(@Param("loginId")String loginId);
+	
+	
+	
+	
+	
 }
