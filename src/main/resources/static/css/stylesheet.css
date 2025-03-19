@@ -173,6 +173,22 @@ body{
 	margin-top:70px;
 	margin-left:10px;
 }
+.title{
+	margin-top:10px;
+	margin-left:10px;
+	width:800px;
+	height:30px;
+}
+.titleContents{
+	margin-top:10px;
+	margin-left:10px;
+	width:800px;
+	height:150px;
+}
+
+
+
+
 
 
 
@@ -203,13 +219,19 @@ body{
 	margin-left:10px;
 	margin-top:10px;
 	width:400px;
-	height:300px;
+	height:295px;
+}
+.titleText{
+	margin-left:50px;
+	margin-top:10px;
+	width:300px;
+	height:30px;
 }
 .writeText{
 	margin-left:50px;
 	margin-top:10px;
 	width:300px;
-	height:300px;
+
 }
 
 
