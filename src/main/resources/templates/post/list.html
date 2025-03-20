@@ -15,7 +15,7 @@
         		</div>
         		<!-- ------ -->
         		<ul class="navi">
-        			<li><a href="#">더보기</a>
+        			<li><a href="#"><i class="bi bi-three-dots"></i>더보기</a>
         				<ul class="submenu">
         					<li><a href="/post/write-view" class="text-white">새 게시물</a></li>
         					<li><a href="#" class="text-white">수정하기</a></li>
@@ -39,11 +39,12 @@
       			</a>
       			
       		</article>
+      	<div th:each="post:${postList}">
       	<!-- ----------------------------------- -->
-      		<div>
-      		<!-- 타임리프 -->	<div class="title">게시물 제목</div>
-      		<!-- 타임리프 -->	<div class="titleContents">게시물 내용</div>
-      		</div>
+      		
+      		<!-- 타임리프 -->	<div th:text="${post.title}" class="title">게시물 제목</div>
+      		<!-- 타임리프 -->	<div th:text="${post.contents}" class="titleContents">게시물 내용</div>
+      		<!-- 에러? -->			<span th:text="${#temporals.format(post.updatedAt, 'yyyy-MM-dd')}" class="sliderText">4시간 전</span>
       	<!-- ----------------------------------- -->
       		<div class="listBottom d-flex justify-content-between">
       			<div>
@@ -56,12 +57,10 @@
       				<a>
       					<img src="data:image/png;base64,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" art="share">
       				</a>
-      				<div class="sliderText">
-      					<span class="sliderText">4시간 전</span>
-      				</div>
-      			</div>
-      			
+      			</div>	
       		</div>
+      	<!-- ----------------------------------- -->
+      	</div>
         </section>
         
         

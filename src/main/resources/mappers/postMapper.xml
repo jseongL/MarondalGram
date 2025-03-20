@@ -4,19 +4,37 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="com.jsL.MarondalGram.post.repository.PostRepository">
- 	<insert id="insertProfile">
+ 	<insert id="insertProfile" parameterType="map">
  		INSERT INTO `profile`
  		(
- 			`title`
+ 			`userId`
+ 			,`title`
  			,`contents`
  		)
  		VALUE
  		(
- 			#{title}
+ 			#{userId}
+ 			,#{title}
  			,#{contents}
  		)
- 	
+ 		
  	</insert>
+ 	
+ 	
+ 	
+ 	
+ 	<select id="selectProfile" 
+ 	resultType="com.jsL.MarondalGram.post.domain.Post" parameterType="int">
+ 		SELECT
+ 			`title`
+ 			,`contents`
+ 		FROM
+ 			`profile`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		
+ 	</select>
+ 	
  
  
  </mapper>
