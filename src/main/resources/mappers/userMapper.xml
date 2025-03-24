@@ -56,7 +56,22 @@
  
  	
  	
+ 	<select id="selectUserById" parameterType="int"
+ 	resultType="com.jsL.MarondalGram.user.domain.User">
+ 		SELECT 
+ 			`id`
+ 			, `loginId`
+ 			, `password`
+ 			, `phoneNumber`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM 
+ 			`user`
+ 		WHERE 
+ 			`id` = #{id}
+ 
  	
+ 	</select>
  	
  	
  	

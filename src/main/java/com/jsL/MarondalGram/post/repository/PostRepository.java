@@ -2,22 +2,13 @@ package com.jsL.MarondalGram.post.repository;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.jsL.MarondalGram.post.domain.Post;
 
-@Mapper
-public interface PostRepository {
+
+public interface PostRepository extends JpaRepository<Post, Integer> {
 	
-	public int insertProfile(
-			@Param("userId")int userId
-			,@Param("title")String title
-			,@Param("contents")String contents
-			);
-	
-	
-	
-	public List<Post> selectProfile(@Param("userId")int userId);
+	public List<Post>findByUserIdOrderByIdDesc(int userId);
 
 }

@@ -25,6 +25,8 @@ public interface UserRepository {
 	public int selectCountByLoginId(@Param("loginId")String loginId);
 	
 	
+	public User selectUserById(@Param("id") int id);
+	
 	
 	
 	

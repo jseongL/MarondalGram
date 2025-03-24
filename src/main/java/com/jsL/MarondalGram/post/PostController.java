@@ -6,9 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jsL.MarondalGram.post.domain.Post;
+import com.jsL.MarondalGram.post.dto.CardView;
 import com.jsL.MarondalGram.post.service.PostService;
 
 import jakarta.servlet.http.HttpSession;
@@ -33,12 +33,22 @@ public class PostController {
 		
 		List<Post>postList = postService.getProfile(userId);
 		
+		List<CardView> cardList = postService.getPostList();
 		
 		model.addAttribute("postList", postList);
-		
+		model.addAttribute("cardList", cardList);
 		
 		return "post/list";
 	}
+	
+	
+	
+
+	
+	
+	
+	
+	
 	
 	
 	@GetMapping("/write-view")

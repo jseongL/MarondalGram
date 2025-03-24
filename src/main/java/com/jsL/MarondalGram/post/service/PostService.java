@@ -1,18 +1,25 @@
 package com.jsL.MarondalGram.post.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.exceptions.PersistenceException;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.jsL.MarondalGram.post.domain.Post;
+import com.jsL.MarondalGram.post.dto.CardView;
 import com.jsL.MarondalGram.post.repository.PostRepository;
+import com.jsL.MarondalGram.user.domain.User;
+import com.jsL.MarondalGram.user.service.UserService;
 
 @Service
 public class PostService {
-	
+	private UserService userService;
 	private PostRepository postRepository;
-	public PostService(PostRepository postRepository) {
+	public PostService(PostRepository postRepository, UserService userService) {
 		this.postRepository = postRepository;
+		this.userService = userService;
 	}
 	
 	
@@ -21,13 +28,19 @@ public class PostService {
 			,String title
 			,String contents
 			) {
+		Post post = Post.builder()
+		 		.userId(userId)
+		 		.title(title)
+		 		.contents(contents)
+		 		.build();
+		try {			
+ 			postRepository.save(post);
+ 		} catch(PersistenceException e) {
+ 			return false;
+ 		}
+ 		
+ 		return true;
 		
-		int count = postRepository.insertProfile(userId, title, contents);
-		
-		if(count > 0) {
-			return true;
-		}
-		return false;
 	}
 	
 	
@@ -36,12 +49,37 @@ public class PostService {
 	
 	public List<Post> getProfile(int userId) {
 		
-		List<Post> post = postRepository.selectProfile(userId);
+		List<Post> post = postRepository.findByUserIdOrderByIdDesc(userId);
 		return post;
 	}
+	
+	
+	
+	
 
 	
-	
+	public List<CardView> getPostList() {
+ 		List<Post> postList = postRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+ 		
+ 		List<CardView> cardList = new ArrayList<>();
+ 		for(Post post:postList) {
+ 			
+ 			User user = userService.getUserById(post.getUserId());
+ 			
+ 			CardView cardView = CardView.builder()
+ 			.postId(post.getId())
+ 			.contents(post.getContents())
+ 			//.imagePath(post.getImagePath())
+ 			.userId(post.getUserId())
+ 			.loginId(user.getLoginId())
+ 			.build();
+ 			
+ 			cardList.add(cardView);
+ 		}
+ 		
+ 		return cardList;
+ 		
+ 	}
 	
 	
 	
