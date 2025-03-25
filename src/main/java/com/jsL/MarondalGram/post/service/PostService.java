@@ -2,11 +2,13 @@ package com.jsL.MarondalGram.post.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.jsL.MarondalGram.like.domain.Like;
 import com.jsL.MarondalGram.post.domain.Post;
 import com.jsL.MarondalGram.post.dto.CardView;
 import com.jsL.MarondalGram.post.repository.PostRepository;
@@ -54,6 +56,10 @@ public class PostService {
 	}
 	
 	
+//	public Optional<Like> getLikeList(int postId, int userId){
+//		Optional like = postRepository.findByUserIdAndPostId(userId, postId);
+//		return like;
+//	}
 	
 	
 
@@ -68,10 +74,12 @@ public class PostService {
  			
  			CardView cardView = CardView.builder()
  			.postId(post.getId())
+ 			.title(post.getTitle())
  			.contents(post.getContents())
  			//.imagePath(post.getImagePath())
  			.userId(post.getUserId())
  			.loginId(user.getLoginId())
+ 		
  			.build();
  			
  			cardList.add(cardView);

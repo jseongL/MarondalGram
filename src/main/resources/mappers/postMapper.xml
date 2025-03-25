@@ -23,6 +23,7 @@
  	
  	
  	
+ 	
  	<select id="selectProfile" 
  	resultType="com.jsL.MarondalGram.post.domain.Post" parameterType="int">
  		SELECT
