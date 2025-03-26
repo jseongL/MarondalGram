@@ -33,7 +33,9 @@ public class LikeService {
 	
 	
 	
-	
+	public int getLikeCount(int postId) {
+ 		return likeRepository.countByPostId(postId);
+ 	}
 	
 	
 	
