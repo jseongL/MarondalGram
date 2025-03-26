@@ -38,5 +38,21 @@ public class LikeService {
 	
 	
 	
+	public boolean isLikeByUserIdAndPostId(int postId, int userId){
+		return likeRepository.existsByPostIdAndUserId(postId, userId);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

@@ -1,14 +1,13 @@
 package com.jsL.MarondalGram.post;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jsL.MarondalGram.like.domain.Like;
+import com.jsL.MarondalGram.like.service.LikeService;
 import com.jsL.MarondalGram.post.dto.CardView;
 import com.jsL.MarondalGram.post.service.PostService;
 
@@ -19,9 +18,14 @@ import jakarta.servlet.http.HttpSession;
 public class PostController {
 	
 	private final PostService postService;
-	public PostController(PostService postService) {
+	private final LikeService likeSerivce;
+	public PostController(PostService postService, LikeService likeSerivce) {
 		this.postService = postService;
+		this.likeSerivce = likeSerivce;
 	}
+	
+	
+	
 	
 	
 	@GetMapping("/list-view")
@@ -34,7 +38,6 @@ public class PostController {
 		//int postId = (Integer)session.getAttribute("postId");
 		
 		
-		//List<Post>postList = postService.getProfile(userId);
 		
 		List<CardView> cardList = postService.getPostList();
 		

@@ -2,19 +2,20 @@ package com.jsL.MarondalGram.post.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.jsL.MarondalGram.like.domain.Like;
 import com.jsL.MarondalGram.post.domain.Post;
 import com.jsL.MarondalGram.post.dto.CardView;
 import com.jsL.MarondalGram.post.repository.PostRepository;
 import com.jsL.MarondalGram.user.domain.User;
 import com.jsL.MarondalGram.user.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
 public class PostService {
 	private UserService userService;
@@ -66,6 +67,8 @@ public class PostService {
 	
 	public List<CardView> getPostList() {
  		List<Post> postList = postRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+ 		
+ 		
  		
  		List<CardView> cardList = new ArrayList<>();
  		for(Post post:postList) {

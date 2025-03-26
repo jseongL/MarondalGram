@@ -19,4 +19,11 @@ public class CardView{
 //		private String share;
 	 	private int userId;
 	 	private String loginId;
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
 }
