@@ -1,6 +1,5 @@
 package com.jsL.MarondalGram.post.dto;
 
-
 import lombok.Builder;
 import lombok.Getter;
 
@@ -19,6 +18,7 @@ public class CardView{
 //		private String share;
 	 	private int userId;
 	 	private String loginId;
+
 	 	
 	 	
 	 	
@@ -26,4 +26,7 @@ public class CardView{
 	 	
 	 	
 	 	
+
+	 	private int likeCount;
+
 }

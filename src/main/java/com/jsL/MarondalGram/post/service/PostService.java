@@ -7,6 +7,7 @@ import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.jsL.MarondalGram.like.service.LikeService;
 import com.jsL.MarondalGram.post.domain.Post;
 import com.jsL.MarondalGram.post.dto.CardView;
 import com.jsL.MarondalGram.post.repository.PostRepository;
@@ -15,14 +16,16 @@ import com.jsL.MarondalGram.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
+
 @Service
 public class PostService {
 	private UserService userService;
 	private PostRepository postRepository;
-	public PostService(PostRepository postRepository, UserService userService) {
+	private final LikeService likeService;
+	public PostService(PostRepository postRepository, UserService userService, LikeService likeService) {
 		this.postRepository = postRepository;
 		this.userService = userService;
+		this.likeService = likeService;
 	}
 	
 	
@@ -57,8 +60,8 @@ public class PostService {
 	}
 	
 	
-//	public Optional<Like> getLikeList(int postId, int userId){
-//		Optional like = postRepository.findByUserIdAndPostId(userId, postId);
+//	public Optional<Like> getLikeList(int userId, int postId){
+//		Optional<Like> like = postRepository.findByUserIdAndPostId(userId, postId);
 //		return like;
 //	}
 	
@@ -75,6 +78,9 @@ public class PostService {
  			
  			User user = userService.getUserById(post.getUserId());
  			
+ 			int likeCount = likeService.getLikeCount(post.getId());
+ 			
+ 			
  			CardView cardView = CardView.builder()
  			.postId(post.getId())
  			.title(post.getTitle())
@@ -82,7 +88,7 @@ public class PostService {
  			//.imagePath(post.getImagePath())
  			.userId(post.getUserId())
  			.loginId(user.getLoginId())
- 		
+ 			.likeCount(likeCount)
  			.build();
  			
  			cardList.add(cardView);
