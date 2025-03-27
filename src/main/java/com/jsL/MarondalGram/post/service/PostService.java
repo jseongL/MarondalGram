@@ -2,6 +2,7 @@ package com.jsL.MarondalGram.post.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.data.domain.Sort;
@@ -13,8 +14,6 @@ import com.jsL.MarondalGram.post.dto.CardView;
 import com.jsL.MarondalGram.post.repository.PostRepository;
 import com.jsL.MarondalGram.user.domain.User;
 import com.jsL.MarondalGram.user.service.UserService;
-
-import lombok.RequiredArgsConstructor;
 
 
 @Service
@@ -60,6 +59,19 @@ public class PostService {
 	}
 	
 	
+	
+	
+	public Post getPost(int id){
+		Optional<Post>optionalPost = postRepository.findById(id);
+		
+		return optionalPost.orElse(null);
+	}
+	
+	
+	
+	
+	
+	
 //	public Optional<Like> getLikeList(int userId, int postId){
 //		Optional<Like> like = postRepository.findByUserIdAndPostId(userId, postId);
 //		return like;
@@ -97,6 +109,35 @@ public class PostService {
  		return cardList;
  		
  	}
+	
+	
+	
+	public boolean updateProfile(int postId, String title, String contents) {
+	Optional<Post> optionalPost = postRepository.findById(postId);
+			
+			if(optionalPost.isPresent()) {
+				
+				Post post = optionalPost.get();
+				
+				post = post.toBuilder()
+				.title(title)	
+				.contents(contents)
+				.build();//수정됌
+				
+				
+				try {
+					postRepository.save(post);//포스트 객체가 파라메터로 전달
+				}catch(PersistenceException e){
+					return false;
+				}
+				
+			}else {
+				return false;
+			}
+			return true;
+	}
+	
+	
 	
 	
 	

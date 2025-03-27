@@ -52,7 +52,25 @@ public class PostRestController {
 	}
 	
 	
-	
+	@PostMapping("/updateProfile")
+	public Map<String, String> modifyProfile(
+			@RequestParam int postId
+			,@RequestParam String title
+			,@RequestParam String contents
+			) {
+		
+		boolean result = postService.updateProfile(postId, title, contents);
+		
+		Map<String, String>resultMap = new HashMap<>();
+		
+		if(result) {
+			resultMap.put("result", "success");
+		}
+		else {
+			resultMap.put("result", "fail");
+		}
+		return resultMap;
+	}
 	
 	
 	

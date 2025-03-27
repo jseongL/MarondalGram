@@ -2,6 +2,8 @@ package com.jsL.MarondalGram.post.domain;
 
 import java.time.LocalDateTime;
 
+import com.jsL.MarondalGram.post.dto.CardView;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +18,7 @@ import lombok.NoArgsConstructor;
 
 
 
-@Builder
+@Builder(toBuilder=true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

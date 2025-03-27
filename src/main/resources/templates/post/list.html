@@ -18,8 +18,6 @@
         			<li><a href="#">더보기</a>
         				<ul class="submenu">
         					<li><a href="/post/write-view" class="text-white">새 게시물</a></li>
-        					<li><a href="#" class="text-white">수정하기</a></li>
-        					<li><a href="#" class="text-white">삭제하기</a></li>
         					<li><a href="#" id="logoutBtn" class="text-white">로그아웃</a></li>
         					<li><a href="#" id="deleteUserBtn" class="text-white">탈퇴하기</a></li>
         				</ul>
@@ -41,6 +39,16 @@
       			</a>
       			
       		</article>
+      		<div class="mt-2 d-flex justify-content-end">
+      			<ul class="navi">
+        			<li class="bg-info"><a href="#"><i class="bi bi-three-dots"></i></a>
+        				<ul class="submenu">
+<!-- 카드 리스트에서 포스트 아이디 값 보내야 함 --><li><a th:href="|/post/modify-view?id=${card.postId}|" class="text-white">수정하기</a></li>
+        					<li><a href="#" class="text-white">삭제하기</a></li>
+        				</ul>
+        			</li>
+        		</ul>
+        	</div>
       	<!-- ----------------------------------- -->
       		
       		<!-- 타임리프 -->	<div th:text="${card.title}" class="title">게시물 제목</div>
@@ -54,48 +62,61 @@
  <!-- 카드 테이블 만들기 --> <img th:data-post-id="${card.postId}"   class="like-Btn d-none" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZXBbEX8wPubpxeqAIwZUHEfDky04XVvBY8g&s" alt="likeBtn">
 						<!-- th:text="${card.likeCount}" -->
  					</a>
-					<span class="likeCount">좋아요 <span th:text="${card.likeCount}">11</span>개</span> 
-      				<a>
-     <!-- data가 아이디 --> <img class="comment-btn" src="data:image/png;base64,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" art="comment">
-      				</a>
-      				<a>
-      					<img src="data:image/png;base64,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" art="share">
-      				</a>
-      			</div>	
+					<span class="likeCount">좋아요 <span th:text="${card.likeCount}">11</span>개</span>      				
+      			</div>
       		</div>
+      		
       	<!-- ----------------------------------- -->
-      	</div>
-      	
-      	
-      	<div id="modal">
-      		<div class="modal_up">
-	      			<div class="upTitle">댓글</div>
-	      			<div class="upBody">내용</div>
+      		<div class="d-flex mb-3">
+      			<h4>dlawltjd</h4>
+      			<span class="ml-3">우하하</span>
       		</div>
-      	</div>
       	
+	
       	
-      	
-      	
+      		<div class="d-flex">
+      			<input th:id="|commentInput${card.postId}|" type="text" class="form-control">
+      			<button class="btn btn-success col-1 mb-4 comment-btn">게시</button>
+      		</div>  	
+      	</div>   	
         </section>
         
-        
-        
-        
-        
-        
+
         
       <script layout:fragment="script">
       $(function(){
-    	  $(".comment-btn").on("click", function(){
-    		let postId = $(this).data("post-id");
-    		
-    		//이벤트가 발생한 버튼에 매칭된 input 테그 객체
-    		alert("2");
-    		
-    		
-    		
-    	  });
+    	  
+    	  
+    	  
+    	  
+    	  
+    	  
+    	  
+    	  $(".comment-btn").on("click", function() {
+				let postId = $(this).data("post-id");
+				
+				// 이벤트가 발생한 버튼에 매칭된 input 태그 객체 
+				// let contents = $(this).prev().val();
+				let contents = $("#commentInput" + postId).val();
+				
+				$.ajax({
+					type:"post"
+					, url:"/post/comment/create"
+					, data:{"postId":postId, "contents":contents}
+					, success:function(response) {
+						if(response.result == "success") {
+							location.reload();
+						} else {
+							alert("댓글 쓰기 실패!");
+						}
+						
+					}
+					, error:function() {
+						alert("댓글 쓰기 에러!");
+					}
+				});
+				
+			});
     	  
     	  
     	  
@@ -165,6 +186,14 @@
       					location.href = "/user/deleteUser";
       				}
       				
+      			});
+      			
+      			
+      			
+      			
+      			$("#modifyBtn").on("click", function(){
+      				location.href = "/post/modify-view";
+
       			});
       			
       			

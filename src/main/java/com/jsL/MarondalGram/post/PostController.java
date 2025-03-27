@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jsL.MarondalGram.like.service.LikeService;
 import com.jsL.MarondalGram.post.domain.Post;
@@ -63,7 +64,27 @@ public class PostController {
 	
 	
 	
-
+ 	@GetMapping("/modify-view")
+ 	public String modify(
+ 			@RequestParam() int id
+ 			,HttpSession session
+ 			,Model model
+ 			) {
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		Post post = postService.getPost(id);
+ 		
+ 		model.addAttribute("post", post);
+ 		
+ 		
+ 		
+ 		return "post/modify";
+ 	}
+ 	
+ 	
 	
 	
 	
